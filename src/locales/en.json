@@ -31,5 +31,10 @@
         "northWest": "North-westerly"
       }
     }
+  },
+  "errors": {
+    "empty": "Required",
+    "notFound": "This city does not exist",
+    "unknown": "An unknown error occurred"
   }
 }

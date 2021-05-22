@@ -49,8 +49,10 @@ export default Vue.extend({
 
   methods: {
     replaceCityInput (newCityInput: string): void {
+      // Clear error since the city name input changed
       this.$store.commit('UPDATE_VALUE', {
-        cityNameInput: newCityInput
+        cityNameInput: newCityInput,
+        cityNameError: ''
       })
     },
     clearRequestHistory (): void {

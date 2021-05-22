@@ -78,6 +78,15 @@ export default Vue.extend({
     changeLocale (newLocale: string): void {
       this.$i18n.locale = newLocale
       this.$store.commit('UPDATE_VALUE', { locale: newLocale })
+
+      // Update weather info on language change
+      // to get translated weather description
+      if (this.$store.state.currentWeather) {
+        this.$store.dispatch('getCurrentWeather', {
+          cityName: this.$store.state.currentWeather.cityName,
+          saveToHistory: false
+        })
+      }
     }
   }
 })
