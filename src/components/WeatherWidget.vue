@@ -1,5 +1,8 @@
 <template>
-  <v-card transition="v-expand-transition">
+  <v-card
+    transition="v-expand-transition"
+    width="400"
+  >
     <v-card-title class="text-capitalize">{{ currentWeather.description }}</v-card-title>
 
     <v-card-text>
