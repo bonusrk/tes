@@ -76,6 +76,10 @@ export default Vue.extend({
 
   methods: {
     changeLocale (newLocale: string): void {
+      if (this.$i18n.locale === newLocale) {
+        return
+      }
+
       this.$i18n.locale = newLocale
       this.$store.commit('UPDATE_VALUE', { locale: newLocale })
 
