@@ -7,5 +7,29 @@
     "title": "Request history",
     "empty": "You haven't made any requests yet.",
     "clearButton": "Clear"
+  },
+  "weatherWidget": {
+    "temperature": {
+      "feelsLike": "Feels like",
+      "min": "Lowest temperature",
+      "max": "Highest temperature"
+    },
+    "pressure": "Pressure",
+    "pressureUnit": "hPa",
+    "humidity": "Humidity",
+    "wind": {
+      "sep": " wind at ",
+      "speedUnit": "m/s",
+      "directions": {
+        "north": "Northerly",
+        "northEast": "North-easterly",
+        "east": "Easterly",
+        "southEast": "South-easterly",
+        "south": "Southerly",
+        "southWest": "South-westerly",
+        "west": "Westerly",
+        "northWest": "North-westerly"
+      }
+    }
   }
 }

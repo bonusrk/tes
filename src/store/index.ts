@@ -50,7 +50,8 @@ export default new Vuex.Store({
       const weatherResponse = await api.sendRequest('get', 'currentWeather', {
         q: cityName,
         appid: context.state.apiKey,
-        lang: context.state.locale
+        lang: context.state.locale,
+        units: 'metric'
       })
 
       if (weatherResponse.status === 200) {

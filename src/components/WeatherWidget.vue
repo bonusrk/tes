@@ -1,14 +1,45 @@
 <template>
   <v-card transition="v-expand-transition">
-    <v-card-title>{{ currentWeather.name }}</v-card-title>
+    <v-card-title class="text-capitalize">{{ currentWeather.description }}</v-card-title>
 
-    <v-card-subtitle>{{ currentWeather.description }}</v-card-subtitle>
+    <v-card-text>
+      <div class="text-h5 text--primary">
+        {{ currentWeather.temperature.fact }} °C
+      </div>
 
-    <v-card-text>{{ currentWeather.temperature.fact }}</v-card-text>
+      <div class="text--primary">
+        {{ $t('weatherWidget.temperature.feelsLike') }}:
+        {{ currentWeather.temperature.feelsLike }} °C
+      </div>
 
-    <v-card-text>{{ currentWeather.pressure }}</v-card-text>
+      <div>
+        {{ $t('weatherWidget.temperature.min') }}:
+        {{ currentWeather.temperature.min }} °C
+      </div>
 
-    <v-card-text>{{ currentWeather.humidity }}</v-card-text>
+      <div>
+        {{ $t('weatherWidget.temperature.max') }}:
+        {{ currentWeather.temperature.max }} °C
+      </div>
+
+      <div>
+        {{ $t('weatherWidget.pressure') }}:
+        {{ currentWeather.pressure }}
+        {{ $t('weatherWidget.pressureUnit') }}
+      </div>
+
+      <div>
+        {{ $t('weatherWidget.humidity') }}:
+        {{ currentWeather.humidity }}%
+      </div>
+
+      <div>
+        {{ $t(`weatherWidget.wind.directions.${getVerbalDirection(currentWeather.wind.deg)}`) }}
+        {{ $t(`weatherWidget.wind.sep`) }}
+        {{ currentWeather.wind.speed }}
+        {{ $t(`weatherWidget.wind.speedUnit`) }}
+      </div>
+    </v-card-text>
   </v-card>
 </template>
 
@@ -21,6 +52,30 @@ export default Vue.extend({
 
   computed: mapState([
     'currentWeather'
-  ])
+  ]),
+
+  methods: {
+    getVerbalDirection (angleDeg: number): string {
+      const directions = [
+        'north',
+        'northEast',
+        'east',
+        'southEast',
+        'south',
+        'southWest',
+        'west',
+        'northWest',
+        'north'
+      ]
+
+      angleDeg %= 360
+      angleDeg -= 22.5
+      if (angleDeg < 0) {
+        angleDeg += 360
+      }
+
+      return directions[Math.floor(angleDeg / 45) + 1]
+    }
+  }
 })
 </script>

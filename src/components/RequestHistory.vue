@@ -5,13 +5,19 @@
     </p>
 
     <v-list v-if="citiesHistory.length">
-      <v-list-item
-        v-for="(cityName, cityId) in citiesHistory"
-        :key="cityId"
-        @click="replaceCityInput(cityName)"
-      >
-        {{ cityName }}
-      </v-list-item>
+      <template v-for="(cityName, cityId) in citiesHistory">
+        <v-list-item
+          :key="cityId"
+          @click="replaceCityInput(cityName)"
+        >
+          {{ cityName }}
+        </v-list-item>
+
+        <v-divider
+          v-if="cityId < citiesHistory.length - 1"
+          :key="'divider-' + cityId"
+        ></v-divider>
+      </template>
     </v-list>
 
     <p
