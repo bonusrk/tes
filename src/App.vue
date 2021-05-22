@@ -4,6 +4,29 @@
       <div class="text-h5 ml-2">
         Weather Test App
       </div>
+      <v-spacer/>
+
+      <v-menu>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
+            icon
+            v-bind="attrs"
+            v-on="on"
+          >
+            <v-icon>mdi-translate</v-icon>
+          </v-btn>
+        </template>
+
+        <v-list>
+          <v-list-item
+            v-for="(localeName, localeKey) in availableLocales"
+            :key="localeKey"
+            @click="changeLocale(localeKey)"
+          >
+            <v-list-item-title>{{ localeName }}</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
     </v-app-bar>
 
     <v-main>
@@ -11,7 +34,7 @@
         <CityInput/>
         <WeatherWidget
           v-if="$store.state.currentWeather"
-          class="mt-6"
+          class="mt-8"
         />
         <RequestHistory/>
       </v-container>
@@ -35,7 +58,10 @@ export default Vue.extend({
   },
 
   data: () => ({
-    //
+    availableLocales: {
+      ru: 'Русский',
+      en: 'English'
+    }
   }),
 
   created () {
@@ -45,6 +71,13 @@ export default Vue.extend({
       this.$i18n.locale = savedLocale
     } else {
       this.$store.commit('UPDATE_VALUE', { locale: this.$i18n.locale })
+    }
+  },
+
+  methods: {
+    changeLocale (newLocale: string): void {
+      this.$i18n.locale = newLocale
+      this.$store.commit('UPDATE_VALUE', { locale: newLocale })
     }
   }
 })

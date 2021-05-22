@@ -47,10 +47,9 @@ export default new Vuex.Store({
     async getCurrentWeather (context: ActionContext<TypedState, TypedState>, cityName: string) {
       const weatherResponse = await api.sendRequest('get', 'currentWeather', {
         q: cityName,
-        appid: context.state.apiKey
+        appid: context.state.apiKey,
+        lang: context.state.locale
       })
-
-      console.log(typeof weatherResponse.data)
 
       if (weatherResponse.status === 200) {
         this.commit('UPDATE_VALUE', {
@@ -74,7 +73,6 @@ export default new Vuex.Store({
           }
         })
       }
-      console.log(weatherResponse)
     }
   }
 })

@@ -19,11 +19,9 @@ import Vue from 'vue'
 export default Vue.extend({
   name: 'CityInput',
 
-  data: () => {
-    return {
-      cityName: 'Berlin'
-    }
-  },
+  data: () => ({
+    cityName: 'Berlin'
+  }),
 
   methods: {
     submitCityName (): void {
