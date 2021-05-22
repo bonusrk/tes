@@ -2,5 +2,10 @@
   "cityInput": {
     "title": "Город",
     "submit": "Получить"
+  },
+  "requestHistory": {
+    "title": "История запросов",
+    "empty": "Вы еще не делали запросов.",
+    "clearButton": "Очистить"
   }
 }

@@ -12,6 +12,7 @@ interface TypedState {
   apiKey: string,
   locale: string,
   currentWeather: WeatherInfo | null,
+  cityNameInput: string,
   citiesHistory: string[]
 }
 
@@ -32,6 +33,7 @@ export default new Vuex.Store({
     apiKey: '84e2a9ad0b2bca1922b23252454cc8a2',
     locale: 'ru',
     currentWeather: null,
+    cityNameInput: '',
     citiesHistory: []
   } as TypedState,
 
@@ -70,7 +72,8 @@ export default new Vuex.Store({
               speed: weatherResponse.data.wind.speed,
               deg: weatherResponse.data.wind.deg
             }
-          }
+          },
+          citiesHistory: [cityName, ...context.state.citiesHistory]
         })
       }
     }

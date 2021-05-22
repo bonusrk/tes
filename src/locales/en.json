@@ -2,5 +2,10 @@
   "cityInput": {
     "title": "City",
     "submit": "Get"
+  },
+  "requestHistory": {
+    "title": "Request history",
+    "empty": "You haven't made any requests yet.",
+    "clearButton": "Clear"
   }
 }
