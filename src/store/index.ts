@@ -37,7 +37,7 @@ export default new Vuex.Store({
 
   mutations: {
     UPDATE_VALUE (state: TypedState, payload: Record<string, unknown>) {
-      Object.keys(payload).map(propertyKey => {
+      Object.keys(payload).forEach(propertyKey => {
         Vue.set(state, propertyKey, payload[propertyKey])
       })
     }
@@ -50,6 +50,30 @@ export default new Vuex.Store({
         appid: context.state.apiKey
       })
 
+      console.log(typeof weatherResponse.data)
+
+      if (weatherResponse.status === 200) {
+        this.commit('UPDATE_VALUE', {
+          // Convert response data to proper structure
+          currentWeather: {
+            name: weatherResponse.data.weather[0].main,
+            description: weatherResponse.data.weather[0].description,
+            cityName: weatherResponse.data.name,
+            temperature: {
+              fact: weatherResponse.data.main.temp,
+              feelsLike: weatherResponse.data.main.feels_like,
+              min: weatherResponse.data.main.temp_min,
+              max: weatherResponse.data.main.temp_max
+            },
+            pressure: weatherResponse.data.main.pressure,
+            humidity: weatherResponse.data.main.humidity,
+            wind: {
+              speed: weatherResponse.data.wind.speed,
+              deg: weatherResponse.data.wind.deg
+            }
+          }
+        })
+      }
       console.log(weatherResponse)
     }
   }

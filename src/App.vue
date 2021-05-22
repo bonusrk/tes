@@ -7,17 +7,20 @@
     </v-app-bar>
 
     <v-main>
-      <HelloWorld/>
-      <CityInput/>
-      <WeatherWidget/>
-      <RequestHistory/>
+      <v-container>
+        <CityInput/>
+        <WeatherWidget
+          v-if="$store.state.currentWeather"
+          class="mt-6"
+        />
+        <RequestHistory/>
+      </v-container>
     </v-main>
   </v-app>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import HelloWorld from './components/HelloWorld.vue'
 import CityInput from './components/CityInput.vue'
 import RequestHistory from './components/RequestHistory.vue'
 import WeatherWidget from './components/WeatherWidget.vue'
@@ -26,7 +29,6 @@ export default Vue.extend({
   name: 'App',
 
   components: {
-    HelloWorld,
     CityInput,
     RequestHistory,
     WeatherWidget

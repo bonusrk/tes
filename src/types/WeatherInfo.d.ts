@@ -1,5 +1,7 @@
 export interface WeatherInfo {
+  name: string,
   description: string,
+  cityName: string,
   temperature: {
     fact: number,
     feelsLike: number,

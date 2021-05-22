@@ -1,13 +1,16 @@
 <template>
-  <v-container>
+  <div>
     <v-text-field
       :label="$t('cityInput.title')"
-      hide-details="auto"
+      v-model="cityName"
     ></v-text-field>
-    <v-btn class="mt-4">
+
+    <v-btn
+      @click="submitCityName"
+    >
       {{ $t('cityInput.submit') }}
     </v-btn>
-  </v-container>
+  </div>
 </template>
 
 <script lang="ts">
@@ -16,7 +19,16 @@ import Vue from 'vue'
 export default Vue.extend({
   name: 'CityInput',
 
-  data: () => ({
-  })
+  data: () => {
+    return {
+      cityName: 'Berlin'
+    }
+  },
+
+  methods: {
+    submitCityName (): void {
+      this.$store.dispatch('getCurrentWeather', this.cityName)
+    }
+  }
 })
 </script>
